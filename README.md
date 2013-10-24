@@ -1,12 +1,27 @@
 # deferred state machine (a finite state machine)
 =================================================
 
+## Installation
+
+Use bower to install as part of a project:
+```
+bower install --save deferred-state-machine
+```
+
+To run the tests:
+```
+npm install && grunt testServer
+```
+
 ## Description
 
-`deferredStateMachineFatory.js` is a Finite State Machine Factory that takes an object and a finite state machine
-configuration. Only the methods reference in the configuration are affected, and those methods are turned into resolved
-that only resolve and call the original method if in the correct state. They fail and the original method is not fired
-if in the incorrect state.
+`deferredStateMachineFatory.js` is an amd compatible Finite State Machine Factory that takes an object and a finite state machine
+configuration. Only the methods referenced in the configuration are affected, and those methods
+will resolve and call the original method if in the correct state. They fail and the original method is not fired
+if in the incorrect state. The methods are resolved with the return value of the original method, and they are called
+with the arguments supplied.
+
+This project uses AMD and depends on underscore / lodash and jQuery.
 
 The state machines can work with any types of objects including View instances.
 
@@ -14,50 +29,39 @@ For example:
 
 ```javascript
 obj = {
-    walkThrough: function() { ... },
-    lock: function() { ... },
-    unlock: function() { ... },
-    openDoor: function() { ... },
-    closeDoor: function() { ... },
-    kickDown: function() { ... }
-},
-states = {
-    open: {
-            allowedMethods: [
-               'walkThrough', 'closeDoor'
-            ],
-            allowedTransitions: [
-                'shut'
-            ]
-        },
-    shut: {
-            allowedMethods: [
-                'lock', 'openDoor'
-            ],
-            allowedTransitions: [
-                'open', 'destroyed'
-            ]
-        },
-    locked: {
-            allowedMethods: [
-                'unlock', 'kickDown'
-            ],
-            allowedTransitions: [
-                'shut', 'destroyed'
-            ]
-        },
-    destroyed: {
-            // End state
-        }
-};
+        walkThrough: function() { ... },
+    },
+    states = {
+        open: {
+                allowedMethods: [
+                   'walkThrough'
+                ],
+                allowedTransitions: [
+                    'shut'
+                ]
+            },
+        shut: {
+                allowedMethods: [
+                ],
+                allowedTransitions: [
+                    'open', 'destroyed'
+                ]
+            }
+    };
 
 stateMachine = DeferredStateMachineFactory(obj, states);
 
-stateMachine.getStates(); // output: ['open', 'shut', 'locked', 'destroyed']
+stateMachine.getStates(); // output: ['open', 'shut']
 
-stateMachine.transition.open().done(function() {
-    stateMachine.walkThrough();
-});
+stateMachine
+    .transition('open')
+    .done(function() {
+        stateMachine
+            .walkThrough()
+            .done(function() {
+                transition('shut');
+            });
+    });
 ```
 
 States are defined as objects. Each object has an `allowedMethods` and an `allowedTransitions` array. These are enforced
@@ -68,3 +72,7 @@ rejected on transition. To call methods on the state machine, simply call them d
 The promise is resolved with the return value if it was allowed to run; otherwise it is rejected.
 
 The Deferred State Machine Factory is tested in `deferredStateMachineFactoryTests.js`.
+
+Release Notes:
+
+* 0.0.1 - 2013 10 23 - Initial Release

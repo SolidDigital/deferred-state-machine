@@ -1,24 +1,23 @@
 {
-  "name": "masseuse",
+  "name": "deferredStateMachine",
   "version": "0.0.1",
-  "description": "...",
+  "description": "A finited state machine implemented using jQuery Deferred",
   "main": " ",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "grunt testServer"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Solid-Interactive/masseuse.git"
+    "url": "https://github.com/Solid-Interactive/deferred-state-machine.git"
   },
   "keywords": [
-    "Backbone"
+    "jquery", "deferred", "finite state machine", "bower"
   ],
   "author": "SOLID Interactive",
   "license": "MIT",
   "readmeFilename": "README.md",
-  "gitHead": "56581e51a6dc834d9d4e424b0b45e38ed3331fa4",
   "bugs": {
-    "url": "https://github.com/Solid-Interactive/masseuse/issues"
+    "url": "https://github.com/Solid-Interactive/deferred-state-machine/issues"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
