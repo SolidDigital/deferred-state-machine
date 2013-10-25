@@ -1,6 +1,6 @@
 {
   "name": "deferredStateMachine",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A finited state machine implemented using jQuery Deferred",
   "main": " ",
   "scripts": {

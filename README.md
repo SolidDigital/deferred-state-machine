@@ -1,4 +1,5 @@
-# deferred state machine (a finite state machine)
+# deferred state machine
+#### (a finite state machine)
 =================================================
 
 ## Installation
@@ -13,7 +14,7 @@ To run the tests:
 npm install && grunt testServer
 ```
 
-Tests can be viewed (here)[http://solid-interactive.github.io/deferred-state-machine/.build].
+Tests can be viewed [here](http://solid-interactive.github.io/deferred-state-machine/tests).
 
 ## Description
 
@@ -77,5 +78,6 @@ The Deferred State Machine Factory is tested in `deferredStateMachineFactoryTest
 
 Release Notes:
 
+* 0.0.3 - 2013 10 24 - URL typo fix
 * 0.0.2 - 2013 10 24 - Remove _ as dependency
 * 0.0.1 - 2013 10 23 - Initial Release
