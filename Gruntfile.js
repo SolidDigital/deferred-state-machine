@@ -45,9 +45,20 @@ module.exports = function (grunt) {
             tests : {
                 path : 'http://localhost:9001/tests/'
             }
+        },
+
+
+        build_gh_pages : {
+            deploy : {
+                options : {
+                    build_branch : 'gh-pages',
+                    dist : 'build'
+                }
+            }
         }
     });
 
     // To start editing your slideshow using livereload, run 'grunt server'
     grunt.registerTask('testServer', 'Build and watch task', ['connect:tests',  'open:tests', 'watch']);
+    grunt.registerTask('deploy', 'Deploy website to gh-pages', ['build_gh_pages:deploy']);
 };
