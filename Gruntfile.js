@@ -47,9 +47,21 @@ module.exports = function (grunt) {
             }
         },
 
+        clean : {
+            build : ['build']
+        },
+
+        copy : {
+            build : {
+                files : [
+                    {expand: true, src : 'app/**', dest : 'build/app'},
+                    {expand: true, src : 'tests/**', dest : 'build/tests'}
+                ]
+            }
+        },
 
         build_gh_pages : {
-            deploy : {
+            build : {
                 options : {
                     build_branch : 'gh-pages',
                     dist : 'build'
@@ -60,5 +72,5 @@ module.exports = function (grunt) {
 
     // To start editing your slideshow using livereload, run 'grunt server'
     grunt.registerTask('testServer', 'Build and watch task', ['connect:tests',  'open:tests', 'watch']);
-    grunt.registerTask('deploy', 'Deploy website to gh-pages', ['build_gh_pages:deploy']);
+    grunt.registerTask('deploy', 'Deploy website to gh-pages', ['clean:build', 'copy:build', 'build_gh_pages:build']);
 };
