@@ -1,6 +1,6 @@
 {
   "name": "deferredStateMachine",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A finited state machine implemented using jQuery Deferred",
   "main": " ",
   "scripts": {
@@ -29,6 +29,7 @@
     "grunt-shell": "~0.2.2",
     "grunt-build-gh-pages": "0.0.4",
     "grunt-contrib-copy": "~0.4.1",
-    "grunt-requirejs": "~0.4.0"
+    "grunt-requirejs": "~0.4.0",
+    "grunt-contrib-jshint": "0.6.4"
   }
 }

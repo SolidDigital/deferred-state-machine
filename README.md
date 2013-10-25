@@ -21,7 +21,7 @@ will resolve and call the original method if in the correct state. They fail and
 if in the incorrect state. The methods are resolved with the return value of the original method, and they are called
 with the arguments supplied.
 
-This project uses AMD and depends on underscore / lodash and jQuery.
+This project uses AMD and depends on jQuery.
 
 The state machines can work with any types of objects including View instances.
 
@@ -75,4 +75,5 @@ The Deferred State Machine Factory is tested in `deferredStateMachineFactoryTest
 
 Release Notes:
 
+* 0.0.2 - 2013 10 24 - Remove _ as dependency
 * 0.0.1 - 2013 10 23 - Initial Release

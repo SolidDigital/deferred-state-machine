@@ -1,11 +1,11 @@
 /*global describe:false, it:false, beforeEach:false*/
-define(['underscore', 'chai', 'squire', 'mocha', 'sinon', 'sinonChai'], function (_, chai, Squire, mocha, sinon, sinonChai) {
+define(['chai', 'squire', 'mocha', 'sinon', 'sinonChai'], function (chai, Squire, mocha, sinon, sinonChai) {
 
     'use strict';
     var injector = new Squire(),
         should = chai.should();
 
-    require(['underscore', 'sinonCall', 'sinonSpy']);
+    require(['sinonCall', 'sinonSpy']);
     // Using Sinon-Chai assertions for spies etc. https://github.com/domenic/sinon-chai
     chai.use(sinonChai);
     mocha.setup('bdd');
@@ -31,7 +31,7 @@ define(['underscore', 'chai', 'squire', 'mocha', 'sinon', 'sinonChai'], function
                     lock: function() {},
                     unlock: function() {},
                     openDoor: function() { console.log('openDoor'); },
-                    closeDoor: function() { return 42 },
+                    closeDoor: function() { return 42; },
                     kickDown: function() {}
             };
 
@@ -76,6 +76,13 @@ define(['underscore', 'chai', 'squire', 'mocha', 'sinon', 'sinonChai'], function
                 });
         });
 
+        it('doesn\'t create a global if amd is present', function() {
+            should.exist(window.define);
+            should.exist(window.define.amd);
+            should.not.exist(window.deferredStateMachineFactory);
+        });
+
+
         it('returns an object that is the original object', function() {
             stateMachine.should.equal(obj);
         });
@@ -90,10 +97,10 @@ define(['underscore', 'chai', 'squire', 'mocha', 'sinon', 'sinonChai'], function
                 it('should correctly return the states of one FSM after a second one is created', function() {
                     var fsm2;
 
-                    fsm2 = FSMFactory({}, {
+                    fsm2 = new FSMFactory({}, {
                         'play': {},
                         'pause':{}
-                    })
+                    });
                     fsm2.getStates().should.deep.equal(['play', 'pause']);
                     stateMachine.getStates().should.deep.equal([
                         'open', 'shut', 'locked', 'destroyed'
@@ -124,18 +131,18 @@ define(['underscore', 'chai', 'squire', 'mocha', 'sinon', 'sinonChai'], function
                         stateMachine.getState().should.equal('open');
                         done();
                     });
-                })
+                });
                 it('does not change the state of the FSM after a failed transition', function(done) {
                     stateMachine.transition('blargh').fail(function() {
                         should.not.exist(stateMachine.getState());
                         done();
                     });
-                })
+                });
             });
 
             describe('methods described in the state options', function() {
                 it('all return promises', function() {
-                    _.forEach(methodNames, function(method) {
+                    $.each(methodNames, function(index, method) {
                         isAPromise(stateMachine[method]());
                     });
                 });
@@ -184,11 +191,11 @@ define(['underscore', 'chai', 'squire', 'mocha', 'sinon', 'sinonChai'], function
         testFor = [promise.done, promise.fail, promise.progress, promise.then];
         testAgainst = [promise.resolve, promise.reject];
 
-        _.forEach(testFor, function(method) {
+        $.each(testFor, function(index, method) {
             should.exist(method);
             method.should.be.a.Function;
         });
-        _.forEach(testAgainst, function(method) {
+        $.each(testAgainst, function(index, method) {
             should.not.exist(method);
         });
     }

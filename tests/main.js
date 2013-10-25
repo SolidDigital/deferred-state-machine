@@ -1,12 +1,7 @@
 /*global require*/
-'use strict';
-
 // Require.js allows us to configure shortcut alias
 require.config({
     shim : {
-        underscore : {
-            exports : '_'
-        },
         mocha : {
             exports : 'mocha'
         },
@@ -15,7 +10,6 @@ require.config({
         }
     },
     paths : {
-        underscore : '../app/vendor/lodash/dist/lodash.underscore',
         jquery : '../app/vendor/jquery/jquery',
         mocha : '../app/vendor/mocha/mocha',
         chai : '../app/vendor/chai/chai',

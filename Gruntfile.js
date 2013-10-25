@@ -1,7 +1,7 @@
 /*global module:false, require:false*/
 module.exports = function (grunt) {
 
-    "use strict";
+    'use strict';
 
     var path = require('path'),
         lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet,
@@ -35,7 +35,7 @@ module.exports = function (grunt) {
                     hostname : 'localhost',
                     base : './',
                     middleware : function (connect, options) {
-                        return [lrSnippet, folderMount(connect, options.base)]
+                        return [lrSnippet, folderMount(connect, options.base)];
                     }
                 }
             }
@@ -48,6 +48,6 @@ module.exports = function (grunt) {
         }
     });
 
-    // To start editing your slideshow using livereload, run "grunt server"
-    grunt.registerTask("testServer", "Build and watch task", [ "connect:tests",  "open:tests", "watch"]);
+    // To start editing your slideshow using livereload, run 'grunt server'
+    grunt.registerTask('testServer', 'Build and watch task', ['connect:tests',  'open:tests', 'watch']);
 };
