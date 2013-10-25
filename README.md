@@ -13,6 +13,8 @@ To run the tests:
 npm install && grunt testServer
 ```
 
+Tests can be viewed (here)[http://solid-interactive.github.io/deferred-state-machine/.build].
+
 ## Description
 
 `deferredStateMachineFatory.js` is an amd compatible Finite State Machine Factory that takes an object and a finite state machine
