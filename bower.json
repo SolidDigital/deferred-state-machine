@@ -2,7 +2,7 @@
   "name": "deferredStateMachine",
   "dependencies": {
     "jquery": "~2.0.3",
-    "requirejs": "~2.1.8",
+    "requirejs": "~2.1.8"
   },
   "devDependencies": {
     "mocha": "~1.12.1",
