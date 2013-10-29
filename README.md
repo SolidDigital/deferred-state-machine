@@ -9,9 +9,11 @@ Use bower to install as part of a project:
 bower install --save deferred-state-machine
 ```
 
+The state machine depends on jQuery.
+
 To run the tests:
 ```
-npm install && grunt testServer
+npm install && bower install && grunt testServer
 ```
 
 Tests can be viewed [here](http://solid-interactive.github.io/deferred-state-machine/tests).
@@ -78,6 +80,7 @@ The Deferred State Machine Factory is tested in `deferredStateMachineFactoryTest
 
 Release Notes:
 
+* 0.0.4 - 2013 10 29 - removing checked in dependencies
 * 0.0.3 - 2013 10 24 - URL typo fix
 * 0.0.2 - 2013 10 24 - Remove _ as dependency
 * 0.0.1 - 2013 10 23 - Initial Release
